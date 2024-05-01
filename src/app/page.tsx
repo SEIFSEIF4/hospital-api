@@ -35,7 +35,7 @@ export default function Home() {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined);
       // the prefix to test  this on cloudflare worker url is
-      // // https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
+      // https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
 
       setRequestCount(requestCount - 1);
       if (requestCount <= 1) return;
