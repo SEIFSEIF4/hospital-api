@@ -15,7 +15,8 @@ const apiMaxNumOfRequests = 50;
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
-  const storedRequestCount = localStorage.getItem("requestCount");
+  const storedRequestCount =
+    typeof window !== "undefined" ? localStorage.getItem("requestCount") : null;
   const initialRequestCount = storedRequestCount
     ? parseInt(storedRequestCount)
     : apiMaxNumOfRequests;
@@ -28,7 +29,9 @@ export default function Home() {
   }>();
 
   useEffect(() => {
-    localStorage.setItem("requestCount", requestCount.toString());
+    if (typeof window !== "undefined") {
+      localStorage.setItem("requestCount", requestCount.toString());
+    }
   }, [requestCount]);
 
   useEffect(() => {
