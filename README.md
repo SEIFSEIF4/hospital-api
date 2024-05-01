@@ -24,7 +24,7 @@ Hospital API is a web-based application that provides search functionality for h
 ## Getting Started
 
 1. **Clone the repository**:
-```git clone https://github.com/SEIFSEIF4/hospital-api.git```
+```bash git clone https://github.com/SEIFSEIF4/hospital-api.git```
 
 2. **Install dependencies**:
 ```bash
