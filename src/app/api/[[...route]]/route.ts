@@ -9,8 +9,8 @@ export const runtime = "edge";
 const app = new Hono().basePath("/api");
 
 type EnvConfig = {
-  UPSTASH_REDIS_REST_URL: string;
   UPSTASH_REDIS_REST_TOKEN: string;
+  UPSTASH_REDIS_REST_URL: string;
 };
 
 app.use("/*", cors());
@@ -21,11 +21,11 @@ app.get("/search", async (c) => {
       env<EnvConfig>(c);
 
     const start = performance.now();
-    //--------- Performance Start ---------//
+    // ---------------------
 
     const redis = new Redis({
-      url: UPSTASH_REDIS_REST_URL,
       token: UPSTASH_REDIS_REST_TOKEN,
+      url: UPSTASH_REDIS_REST_URL,
     });
 
     const query = c.req.query("q")?.toUpperCase();
@@ -35,10 +35,10 @@ app.get("/search", async (c) => {
     }
 
     const res = [];
-    const rank = await redis.zrank("terms", query);
+    const rank = await redis.zrank("Hterms", query);
 
     if (rank !== null && rank !== undefined) {
-      const temp = await redis.zrange<string[]>("terms", rank, rank + 100);
+      const temp = await redis.zrange<string[]>("Hterms", rank, rank + 100);
 
       for (const el of temp) {
         if (!el.startsWith(query)) {
@@ -51,7 +51,7 @@ app.get("/search", async (c) => {
       }
     }
 
-    //--------- Performance End ---------//
+    // ------------------------
     const end = performance.now();
 
     return c.json({
@@ -60,11 +60,15 @@ app.get("/search", async (c) => {
     });
   } catch (err) {
     console.error(err);
-    return c.json({ message: "Internal server error" }, { status: 500 });
+
+    return c.json(
+      { results: [], message: "Something went wrong." },
+      {
+        status: 500,
+      }
+    );
   }
 });
 
 export const GET = handle(app);
-// export const POST = handle(app);
-
 export default app as never;

@@ -114,7 +114,6 @@ const countryList = [
   "Iraq",
   "Ireland",
   "Isle of Man",
-  "Israel",
   "Italy",
   "Jamaica",
   "Japan",
@@ -268,7 +267,7 @@ countryList.forEach((country) => {
 
   const populateDb = async () => {
     // @ts-expect-error
-    await redis.zadd("2terms", ...terms);
+    await redis.zadd("Hterms", ...terms);
   };
 
   populateDb();
