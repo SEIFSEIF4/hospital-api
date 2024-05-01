@@ -15,18 +15,24 @@ const apiMaxNumOfRequests = 50;
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
-  const storedRequestCount =
-    typeof window !== "undefined" ? localStorage.getItem("requestCount") : null;
-  const initialRequestCount = storedRequestCount
-    ? parseInt(storedRequestCount)
-    : apiMaxNumOfRequests;
-  const [requestCount, setRequestCount] = useState(initialRequestCount);
+  const [requestCount, setRequestCount] = useState(apiMaxNumOfRequests);
   const [input, setInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<{
     results: string[];
     duration: number;
     MaxNumOfRequests: number;
   }>();
+
+  useEffect(() => {
+    const storedRequestCount =
+      typeof window !== "undefined"
+        ? localStorage.getItem("requestCount")
+        : null;
+    const initialRequestCount = storedRequestCount
+      ? parseInt(storedRequestCount)
+      : apiMaxNumOfRequests;
+    setRequestCount(initialRequestCount);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
