@@ -1,0 +1,6 @@
+name = "hospitalapi"
+compatibility_date = "2024-05-01"
+
+[vars]
+UPSTASH_REDIS_REST_URL = "https://needed-crawdad-33363.upstash.io"
+UPSTASH_REDIS_REST_TOKEN = "AYJTAAIncDExNjU2ZWQzNDk5NjU0YjViYTYwMmQ3MDQ3ZTBjMThjZnAxMzMzNjM"
