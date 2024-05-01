@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import {
   Command,
   CommandEmpty,
@@ -9,8 +10,10 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const { theme, setTheme } = useTheme();
   const [input, setInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<{
     results: string[];
@@ -20,8 +23,8 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined);
-      // once deployed, prefix this with your cloudflare worker url
-      // i.e.: https://<name>.<account-name>.workers.dev/api/search?q=${input}
+      // the prefix to test  this on cloudflare worker url is
+      // https://hospitalapi.bloodbridge.workers.dev/api/search?q=<input>
 
       const res = await fetch(`/api/search?q=${input}`);
       const data = (await res.json()) as {
@@ -35,9 +38,16 @@ export default function Home() {
   }, [input]);
 
   return (
-    <main className="h-screen w-screen grainy">
+    <main className="h-screen w-screen grainy select-none">
       <div className="flex flex-col gap-6 items-center pt-32 duration-500 animate-in animate fade-in-5 slide-in-from-bottom-2.5">
+        <p className="text-zinc-500 text-sm font-bold">v1.0.0</p>
         <h1 className="text-5xl tracking-tight font-bold">Hospital API ⚡</h1>
+        <Button
+          variant="link"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          Toggle Theme
+        </Button>
         <p className="text-zinc-600 text-lg max-w-prose text-center">
           This is a Next.js app with a REST API. The API is served by a
           serverless function.

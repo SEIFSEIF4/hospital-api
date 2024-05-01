@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
     "@upstash/redis": "^1.30.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -18,8 +19,10 @@
     "hono": "^4.2.9",
     "lucide-react": "^0.376.0",
     "next": "14.2.3",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.8.0",
