@@ -23,7 +23,7 @@ export default function Home() {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined);
       // the prefix to test  this on cloudflare worker url is
-      // // https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
+      // https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
 
       const res = await fetch(`/api/search?q=${input}`);
       const data = (await res.json()) as {
