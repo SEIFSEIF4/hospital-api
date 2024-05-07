@@ -53,13 +53,17 @@ export default function Home() {
       if (requestCount <= 1) return;
       console.log("requestCount", requestCount);
 
-      const res = await fetch(`/api/search?q=${input}`);
-      const data = (await res.json()) as {
-        results: string[];
-        duration: number;
-        MaxNumOfRequests: number;
-      };
-      setSearchResults(data);
+      try {
+        const res = await fetch(`/api/search?q=${input}`);
+        const data = (await res.json()) as {
+          results: string[];
+          duration: number;
+          MaxNumOfRequests: number;
+        };
+        setSearchResults(data);
+      } catch (e) {
+        console.log("errads");
+      }
     };
 
     fetchData();
@@ -81,11 +85,11 @@ export default function Home() {
         <p className="text-primary-500 text-sm font-bold">v1.0.0</p>
         <h1
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="text-5xl cursor-pointer tracking-tight text-primary font-bold"
+          className="text-xl md:text-5xl sm:text-3xl cursor-pointer tracking-tight text-primary font-bold"
         >
           Hospital API ⚡
         </h1>
-        <p className="text-primary-600 text-xs md:text-lg lg:text-xl  max-w-prose  text-center">
+        <p className="text-primary-600  text-[8px] sm:text-base md:text-lg lg:text-xl  max-w-prose  text-center">
           This an App built with a REST API. The API is served by a serverless
           function.
         </p>

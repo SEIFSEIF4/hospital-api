@@ -88,11 +88,11 @@ app.get("/search", async (c) => {
       }
 
       const res = [];
-      const rank = await redis.zrank("hospitals", query);
+      const rank = await redis.zrank("infoHospitals", query);
 
       if (rank !== null && rank !== undefined) {
         const temp = await redis.zrange<string[]>(
-          "hospitals",
+          "infoHospitals",
           rank,
           rank + 100
         );

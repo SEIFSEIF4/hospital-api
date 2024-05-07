@@ -1,8 +1,8 @@
 import { Redis } from "@upstash/redis";
 
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+  url: "https://needed-crawdad-33363.upstash.io",
+  token: "AYJTAAIncDExNjU2ZWQzNDk5NjU0YjViYTYwMmQ3MDQ3ZTBjMThjZnAxMzMzNjM",
 });
 
 const hospitalList = [
@@ -50,7 +50,7 @@ const hospitalList = [
   "ACIBADEM MEHMET ALI AYDINLAR ÜNIVERSITESI ATAKENT HASTANESI",
   "MEDICANA KADIKÖY HASTANESI",
   "BAHÇEŞEHIR ÜNIVERSITE HASTANESI MEDICAL PARK GÖZTEPE",
-  "RENATE CLINIC - OP. DR. ŞAMIL YAZGAN",
+  "RENATE CLINIC",
   "MIRA CLINIC",
   "MEMORIAL BAHÇELIEVLER HASTANESI",
   "YEDITEPE ÜNIVERSITESI DIŞ HEKIMLIĞI FAKÜLTESI VE DIŞ HASTANESI",
@@ -73,7 +73,7 @@ hospitalList.forEach((hospital) => {
 
   const populateDb = async () => {
     // @ts-expect-error
-    await redis.zadd("hospitals", ...terms);
+    await redis.zadd("infoHospitals", ...terms);
   };
 
   populateDb();
