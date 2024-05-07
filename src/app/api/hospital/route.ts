@@ -15,42 +15,73 @@ type HospitalDocument = {
   };
 };
 
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
   try {
+    const { searchParams } = new URL(request.url);
+    const hospitalName = searchParams.get("hospitalName");
+
+    if (!hospitalName) {
+      return new NextResponse("Hospital name is required", { status: 400 });
+    }
+
     await connect();
-    const hospitals = await Hospital.find();
-    return new NextResponse(JSON.stringify(hospitals), { status: 200 });
+
+    const hospital = await Hospital.findOne({ hospitalName });
+
+    if (!hospital) {
+      return new NextResponse("Hospital not found", { status: 404 });
+    }
+
+    return new NextResponse(JSON.stringify(hospital), { status: 200 });
   } catch (error) {
-    return new NextResponse("Error in fetching hospitals" + error, {
-      status: 500,
-    });
+    return new NextResponse(
+      "Error in fetching hospital: " + (error as Error).message,
+      {
+        status: 500,
+      }
+    );
   }
 };
 
-// export const POST = async (request: Request) => {
-//   try {
-//     const body = await request.json();
+export const PATCH = async (request: NextRequest) => {
+  try {
+    const { searchParams } = new URL(request.url);
+    const hospitalName = searchParams.get("hospitalName");
 
-//     await connect();
-//     const newHospital = new Hospital(body);
-//     await newHospital.save();
+    if (!hospitalName) {
+      return new NextResponse("Hospital name is required", { status: 400 });
+    }
 
-//     return new NextResponse(
-//       JSON.stringify({ message: "Hospital is created", hospital: newHospital }),
-//       { status: 201 }
-//     );
-//   } catch (error) {
-//     return new NextResponse(
-//       JSON.stringify({
-//         message: "Error in creating hospital",
-//         error,
-//       }),
-//       {
-//         status: 500,
-//       }
-//     );
-//   }
-// };
+    const updateData = await request.json();
+
+    await connect();
+
+    const hospital = await Hospital.findOneAndUpdate(
+      { hospitalName },
+      updateData,
+      { new: true }
+    );
+
+    if (!hospital) {
+      return new NextResponse("Hospital not found", { status: 404 });
+    }
+
+    return new NextResponse(
+      JSON.stringify({
+        message: "Hospital updated successfully",
+        hospital,
+      }),
+      { status: 200 }
+    );
+  } catch (error) {
+    return new NextResponse(
+      "Error in updating hospital: " + (error as Error).message,
+      {
+        status: 500,
+      }
+    );
+  }
+};
 
 export const POST = async (request: NextRequest) => {
   try {

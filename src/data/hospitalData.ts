@@ -457,7 +457,7 @@ export const hospitalsData = [
     },
   },
   {
-    hospitalName: "XA Clinic اكس اي كلينك للتجميل وزراعة الشعر وتجميل الاسنان",
+    hospitalName: "XA Clinic",
     imgSrc:
       "https://lh5.googleusercontent.com/p/AF1QipNVdKY02dg0tozcZQSgFMAB5NVvb9yucCqmu19q=w408-h408-k-no",
     pageUrl:

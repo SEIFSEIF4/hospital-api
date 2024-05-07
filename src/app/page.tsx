@@ -10,11 +10,14 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { redirect, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const apiMaxNumOfRequests = 50;
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
   const [requestCount, setRequestCount] = useState(apiMaxNumOfRequests);
   const [input, setInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<{
@@ -62,6 +65,12 @@ export default function Home() {
     fetchData();
   }, [input]);
 
+  const handleSelect = (value: string) => {
+    setInput(value);
+    toast.success(`Selected ${value}`);
+    router.push(`api/hospital?hospitalName=${value}`);
+  };
+
   return (
     <main
       className={`h-screen w-screen select-none ${
@@ -100,7 +109,7 @@ export default function Home() {
                     <CommandItem
                       key={result}
                       value={result}
-                      onSelect={setInput}
+                      onSelect={handleSelect}
                     >
                       {result}
                     </CommandItem>

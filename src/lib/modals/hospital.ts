@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const HospitalSchema = new Schema({
-  hospitalName: { type: String },
+  hospitalName: { type: String, required: true, unique: true },
   imgSrc: { type: String },
   pageUrl: { type: String },
   hospitalInfo: {
