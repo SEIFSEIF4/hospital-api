@@ -88,10 +88,14 @@ app.get("/search", async (c) => {
       }
 
       const res = [];
-      const rank = await redis.zrank("Hterms", query);
+      const rank = await redis.zrank("hospitals", query);
 
       if (rank !== null && rank !== undefined) {
-        const temp = await redis.zrange<string[]>("Hterms", rank, rank + 100);
+        const temp = await redis.zrange<string[]>(
+          "hospitals",
+          rank,
+          rank + 100
+        );
 
         for (const el of temp) {
           if (!el.startsWith(query)) {

@@ -44,7 +44,7 @@ export default function Home() {
     const fetchData = async () => {
       if (!input) return setSearchResults(undefined);
       // the prefix to test  this on cloudflare worker url is
-      // https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
+      // https://hospitalapi.<username>.workers.dev/api/search?q=<input>
 
       setRequestCount(requestCount - 1);
       if (requestCount <= 1) return;
@@ -86,7 +86,7 @@ export default function Home() {
               value={input}
               disabled={requestCount === 0}
               onValueChange={setInput}
-              placeholder="Search countries..."
+              placeholder="Search hospitals..."
               className="placeholder:text-primary-500"
             />
             <CommandList>
