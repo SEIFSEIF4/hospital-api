@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
+    "@types/mongoose": "^5.11.97",
     "@upstash/ratelimit": "^1.1.3",
     "@upstash/redis": "^1.30.0",
     "class-variance-authority": "^0.7.0",
@@ -21,6 +22,7 @@
     "fs": "^0.0.1-security",
     "hono": "^4.2.9",
     "lucide-react": "^0.376.0",
+    "mongoose": "^8.3.4",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
