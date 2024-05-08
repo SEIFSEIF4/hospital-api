@@ -10,8 +10,10 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { Eraser } from "lucide-react";
 
 const apiMaxNumOfRequests = 50;
 
@@ -62,7 +64,7 @@ export default function Home() {
         };
         setSearchResults(data);
       } catch (e) {
-        console.log("errads");
+        console.log("error", e);
       }
     };
 
@@ -71,8 +73,19 @@ export default function Home() {
 
   const handleSelect = (value: string) => {
     setInput(value);
-    toast.success(`Selected ${value}`);
-    router.push(`api/hospital?hospitalName=${value}`);
+    if (
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+    ) {
+      toast.success(`Selected ${value}`);
+      router.push(`api/hospital?hospitalName=${value}`);
+    } else {
+      toast.error("db is not hosted");
+    }
+  };
+
+  const clearInput = () => {
+    setInput("");
   };
 
   return (
@@ -93,18 +106,24 @@ export default function Home() {
           This an App built with a REST API. The API is served by a serverless
           function.
         </p>
-        <div className="max-w-md w-full">
+        <div className="max-w-md w-full relative">
           <Command>
             <CommandInput
               value={input}
               disabled={requestCount === 0}
               onValueChange={setInput}
               placeholder="Search hospitals..."
-              className="placeholder:text-primary-500"
+              className="placeholder:text-primary-500 w-100% "
             />
             <CommandList>
               {searchResults?.results?.length === 0 ? (
-                <CommandEmpty>No results found.</CommandEmpty>
+                <div>
+                  <CommandEmpty>No results found.</CommandEmpty>
+                  <Eraser
+                    onClick={clearInput}
+                    className="h-6 w-5 my-3 m-auto absolute top-0 right-0 transform  cursor-pointer hover:text-red-500 opacity-50"
+                  />
+                </div>
               ) : null}
 
               {searchResults?.results ? (
