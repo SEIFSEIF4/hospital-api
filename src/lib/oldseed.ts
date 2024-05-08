@@ -1,8 +1,8 @@
 import { Redis } from "@upstash/redis";
 
 const redis = new Redis({
-  url: "https://needed-crawdad-33363.upstash.io",
-  token: "AYJTAAIncDExNjU2ZWQzNDk5NjU0YjViYTYwMmQ3MDQ3ZTBjMThjZnAxMzMzNjM",
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
 
 const hospitalList = [
