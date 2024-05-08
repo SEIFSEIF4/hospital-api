@@ -32,7 +32,7 @@ Hospital API is a web-based application that provides search functionality for h
 ```bash 
 git clone https://github.com/SEIFSEIF4/hospital-api.git
 # or
-Try APi on brwose ```https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
+Try APi on brwose https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
 ```
 
 3. **Install dependencies and Start the server**:
