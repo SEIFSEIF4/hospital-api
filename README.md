@@ -2,6 +2,10 @@
 
 Hospital API is a web-based application that provides search functionality for hospital-related data. It allows users to search for countries and retrieve information related to hospitals within those countries.
 
+
+![Hospital API Demo](https://raw.githubusercontent.com/SEIFSEIF4/hospital-api/master/public/hospitalApi-lightTheme.gif?token=GHSAT0AAAAAACR3AYBJWFWRP5EA22NGU7YOZR22JQQ)
+
+
 ## Features
 
 - **Theme Toggle**: Switch between light and dark themes for better readability.
