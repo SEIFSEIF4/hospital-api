@@ -115,7 +115,13 @@ export default function Home() {
                       value={result}
                       onSelect={handleSelect}
                     >
-                      {result}
+                      {result
+                        .toLowerCase()
+                        .split(" ")
+                        .map(
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                        )
+                        .join(" ")}
                     </CommandItem>
                   ))}
                 </CommandGroup>
