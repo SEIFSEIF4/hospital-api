@@ -28,41 +28,38 @@ Hospital API is a web-based application that provides search functionality for h
 ## Getting Started
 
 1. **Clone the repository**:
-```git clone https://github.com/SEIFSEIF4/hospital-api.git```
-  or
-  Try APi on brwose ```https://hospitalapi.onealking151.workers.dev/api/search?q=<input>```
-
-3. **Install dependencies**:
-```bash
-npm run install
+```bash 
+git clone https://github.com/SEIFSEIF4/hospital-api.git
 # or
-yarn install
-# or
-pnpm install
-# or
-bun install
+Try APi on brwose ```https://hospitalapi.onealking151.workers.dev/api/search?q=<input>
 ```
 
-3. **Start the development server**:
+3. **Install dependencies and Start the server**:
 ```bash
+npm run install
 npm run dev
+
 # or
+
+yarn install
 yarn dev
+
 # or
+
+pnpm install
 pnpm dev
+
 # or
+
+bun install
 bun dev
 ```
 
-4. **Open your browser** and navigate to `http://localhost:3000` to view the application.
+3. **Open your browser** and navigate to `http://localhost:3000` to view the application.
 
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
